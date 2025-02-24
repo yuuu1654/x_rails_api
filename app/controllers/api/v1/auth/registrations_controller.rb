@@ -6,4 +6,13 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def sign_up_params
     params.permit(%i[email password password_confirmation name])
   end
+
+  # 登録成功時のレスポンスをカスタマイズ
+  def render_create_success
+    render json: {
+      status: 'success',
+      data: resource_data,
+      message: I18n.t('devise.registrations.signed_up_but_unconfirmed')
+    }
+  end
 end
