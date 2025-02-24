@@ -9,7 +9,7 @@ module Api
         # 以下を実装しなくても、Devise側でデフォルトで email, password, password_confirmation が許可されている
         # nameも許可したいなら以下のようにオーバーライドする
         def sign_up_params
-          params.permit(%i[name email password password_confirmation phone, birthday])
+          params.permit(%i[name email password password_confirmation phone birthday])
         end
 
         # 登録成功時のレスポンスをカスタマイズ

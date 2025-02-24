@@ -63,13 +63,16 @@ DeviseTokenAuth.setup do |config|
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
   config.send_confirmation_email = true # deviseを使ったメール送信の有効化
-  config.default_confirm_success_url = Rails.env.development? ?
-    'http://localhost:3001' : ENV['PRODUCTION_REDIRECT_URL']
+  config.default_confirm_success_url = if Rails.env.development?
+                                         'http://localhost:3001'
+                                       else
+                                         ENV.fetch('PRODUCTION_REDIRECT_URL', nil)
+                                       end
 
   # リダイレクトURLのホワイトリスト（セキュリティ向上）
   # 本番のドメインも追加
   config.redirect_whitelist = [
-    'http://localhost:3001', 
-    ENV['PRODUCTION_REDIRECT_URL']
+    'http://localhost:3001',
+    ENV.fetch('PRODUCTION_REDIRECT_URL', nil)
   ]
 end
