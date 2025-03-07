@@ -6,5 +6,40 @@ Style/Documentation:
   Enabled: false
 AllCops:
   NewCops: enable
+  Exclude:
+    - 'bin/*'
 RSpec/MultipleExpectations:
   Max: 2
+# 開発環境の設定ファイルの制限を緩和
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/*'
+    - 'db/migrate/*'
+    - 'config/routes.rb'
+    - 'db/schema.rb' 
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'
+    - 'db/migrate/*'
+    - 'bin/*'
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+
+# メソッドの複雑さ (A: Assignments, B: Branches, C: Conditions)
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/20250202110939_devise_token_auth_create_users.rb'
+
+# boolean型カラムの警告 
+# default値がないと、nilが入る恐れがある
+# NOT NULL制約がないと、(true, false, nil)が存在してしまう
+Rails/ThreeStateBooleanColumn:
+  Exclude:
+    - 'db/schema.rb' 
+    - 'db/migrate/20250202110939_devise_token_auth_create_users.rb'
+
+# 複数のカラムを個別で追加する場合 (パフォーマンス向上の為OKとする)
+Rails/BulkChangeTable:
+  Exclude:
+    - 'db/migrate/*'
