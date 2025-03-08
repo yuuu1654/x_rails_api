@@ -21,7 +21,6 @@ Layout/LineLength:
   Exclude:
     - 'config/initializers/devise.rb'
     - 'db/migrate/*'
-    - 'bin/*'
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*'
