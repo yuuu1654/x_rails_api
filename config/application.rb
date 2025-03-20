@@ -26,6 +26,11 @@ module Myapp
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # ログイン情報を保存する際にセッションを使用 (APIモードではデフォルトでセッションを使用していない為)
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
+
     config.generators do |g|
       g.test_framework :rspec,
                        fixtures: false,
