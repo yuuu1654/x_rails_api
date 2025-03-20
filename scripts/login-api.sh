@@ -10,10 +10,10 @@ curl -sS -v -X POST "$BASE_URL/api/v1/users/sign_in" \
   }' \
   | jq '.'
 
-
-# curl -sS "$BASE_URL/api/v1/auth/sessions" \
-#   -H "Content-Type: application/json" \
-#   -H "access-token: z6RZT1uMCB44yZdzPbzR8Q" \
-#   -H "client: Tt4a3MyiEo3FYrEU5jCxDA" \
-#   -H "uid: test10@example.com" \
-#   | jq '.'
+echo "=== ログイン情報取得 ==="
+curl -sS "$BASE_URL/api/v1/auth/sessions" \
+  -H "Content-Type: application/json" \
+  -H "access-token: hP5NcaoXIqljJTgpKKVR-A" \
+  -H "client: 50CHWMRhGTE-RhoZvNZg6Q" \
+  -H "uid: test01@example.com" \
+  | jq '.'
